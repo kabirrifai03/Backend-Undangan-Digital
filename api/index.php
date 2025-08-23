@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 header("Content-Type: application/json");
 
 // Lokasi file untuk simpan komentar
-$file = "comments.json";
+$file = __DIR__ . "/../data/comments.json";
 
 // Kalau file belum ada, buat default JSON
 if (!file_exists($file)) {
