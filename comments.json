@@ -1,0 +1,33 @@
+{
+    "data": [
+        {
+            "uuid": "68a8de20cdddc",
+            "name": "izma",
+            "comment": "semangat",
+            "time": "2025-08-22 21:16:16",
+            "own": "68a8de20cddf2",
+            "presence": 1,
+            "total_guest": 5,
+            "replies": [
+                {
+                    "uuid": "68a8de4345b55",
+                    "name": "Anonim",
+                    "comment": "ontime ya",
+                    "time": "2025-08-22 21:16:51"
+                }
+            ]
+        },
+        {
+            "uuid": "68a8dd7ed591d",
+            "name": "sueb",
+            "comment": "maaf",
+            "time": "2025-08-22 21:13:34",
+            "own": "68a8dd7ed592e",
+            "presence": 0,
+            "total_guest": 0
+        }
+    ],
+    "total": 2,
+    "page": 1,
+    "per_page": 10
+}
