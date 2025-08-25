@@ -17,6 +17,7 @@ header("Content-Type: application/json; charset=utf-8");
 
 
 // --- DATABASE CONNECTION (parse DATABASE_URL if ada) ---
+// --- DATABASE CONNECTION (parse DATABASE_URL if ada) ---
 function get_db_pdo() {
     $databaseUrl = getenv('DATABASE_URL') ?: null;
 
@@ -41,6 +42,10 @@ function get_db_pdo() {
         $pdo = new PDO($dsn, $dbUser, $dbPass, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_EMULATE_PREPARES => false,
+            // Tambahkan opsi ini untuk memastikan skema publik digunakan
+            PDO::PGSQL_ATTR_DISABLE_NATIVE_PREPARED_STATEMENT => true,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET search_path TO public",
         ]);
         return $pdo;
     } catch (PDOException $e) {
