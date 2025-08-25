@@ -22,17 +22,17 @@ function get_db_pdo() {
 
     if ($databaseUrl) {
         $parts = parse_url($databaseUrl);
-        $dbHost = $parts['host'] ?? '127.0.0.1';
+        $dbHost = $parts['host'] ?? 'postgres.railway.internal';
         $dbPort = $parts['port'] ?? 5432;
-        $dbUser = $parts['user'] ?? '';
-        $dbPass = $parts['pass'] ?? '';
-        $dbName = isset($parts['path']) ? ltrim($parts['path'], '/') : '';
+        $dbUser = $parts['user'] ?? 'postgres';
+        $dbPass = $parts['pass'] ?? 'KmHgAwpftjhUqqfutZJanIWKsQbpAYIN';
+        $dbName = isset($parts['path']) ? ltrim($parts['path'], '/') : 'postgres';
     } else {
         // fallback (set these env vars on Railway if you prefer)
-        $dbHost = getenv('DB_HOST') ?: '127.0.0.1';
+        $dbHost = getenv('DB_HOST') ?: 'postgres.railway.internal';
         $dbPort = getenv('DB_PORT') ?: 5432;
         $dbUser = getenv('DB_USER') ?: 'postgres';
-        $dbPass = getenv('DB_PASSWORD') ?: '';
+        $dbPass = getenv('DB_PASSWORD') ?: 'KmHgAwpftjhUqqfutZJanIWKsQbpAYIN';
         $dbName = getenv('DB_NAME') ?: 'postgres';
     }
 
