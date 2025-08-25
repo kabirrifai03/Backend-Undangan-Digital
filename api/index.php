@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 header("Content-Type: application/json; charset=utf-8");
 
-DATABASE_URL=postgresql://postgres:KmHgAwpftjhUqqfutZJanIWKsQbpAYIN@postgres.railway.internal:5432/railway
+DATABASE_URL= "postgresql://postgres:KmHgAwpftjhUqqfutZJanIWKsQbpAYIN@postgres.railway.internal:5432/railway"
 
 
 // --- DATABASE CONNECTION (parse DATABASE_URL if ada) ---
