@@ -171,7 +171,7 @@ if ($method === 'GET') {
 
     try {
         // total count
-        $countStmt = $pdo->query("SELECT COUNT(*) FROM comments");
+        $countStmt = $pdo->query("SELECT COUNT(*) FROM public.comments");
         $total = (int)$countStmt->fetchColumn();
 
         // fetch comments page
