@@ -50,6 +50,41 @@ function get_db_pdo() {
     }
 }
 
+// Tambahkan fungsi ini untuk memastikan tabel ada
+function initialize_db($pdo) {
+    $createCommentsTable = "
+        CREATE TABLE IF NOT EXISTS comments (
+            id SERIAL PRIMARY KEY,
+            own BOOLEAN DEFAULT FALSE,
+            name VARCHAR(255) NOT NULL,
+            comment TEXT NOT NULL,
+            presence INTEGER DEFAULT 0,
+            total_guest INTEGER DEFAULT 0,
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+        );
+    ";
+    
+    $createRepliesTable = "
+        CREATE TABLE IF NOT EXISTS replies (
+            id SERIAL PRIMARY KEY,
+            comment_id INTEGER NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            comment TEXT NOT NULL,
+            created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (comment_id) REFERENCES comments (id) ON DELETE CASCADE
+        );
+    ";
+    
+    try {
+        $pdo->exec($createCommentsTable);
+        $pdo->exec($createRepliesTable);
+    } catch (PDOException $e) {
+        // Log the error but don't stop the script
+        error_log("DB initialization error: " . $e->getMessage());
+    }
+}
+
+
 // small helper formatting datetime
 function fmt_time($dt) {
     if (!$dt) return '';
@@ -67,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST)) {
 }
 
 $pdo = get_db_pdo();
+initialize_db($pdo); // Panggil fungsi inisialisasi di sini
 
 // ---------- ROUTING / HANDLERS ----------
 $method = $_SERVER['REQUEST_METHOD'];
